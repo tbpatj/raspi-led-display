@@ -9,6 +9,18 @@ class DisplayProperties {
         int rowYPixels;
         int dx;
         int dy;
+        int ledRightStart;
+        int ledRightEnd;
+        int ledLeftStart;
+        int ledleftEnd;
+        int ledTopStart;
+        int ledTopEnd;
+        int ledBottomStart;
+        int ledBottomEnd;
+        int rightL;
+        int leftL;
+        int topL;
+        int bottomL;
         DisplayProperties(cv::Mat frame, int LED_COUNT){
             maxX = frame.cols;
             maxY = frame.rows + 10;
@@ -32,5 +44,23 @@ class DisplayProperties {
             
             std::cout << "dx: " << dx << std::endl;
             std::cout << "dy: " << dy << std::endl;
+        }
+        void initLEDPos (int right[2], int left[2],int top[2], int bottom[2]){
+            ledRightStart = right[0];
+            ledRightEnd = right[1];
+            rightL = ledRightEnd - ledRightStart;
+
+            ledLeftStart = left[0];
+            ledLeftEnd = left[1];
+            leftL = ledLeftEnd - ledLeftEnd;
+
+            ledTopStart = top[0];
+            ledTopEnd = top[1];
+            topL = ledTopEnd - ledTopStart
+
+            ledBottomStart = bottom[0];
+            ledBottomEnd = bottom[1];
+            bottomL = ledBottomEnd - ledBottomStart;
+
         }
 };
