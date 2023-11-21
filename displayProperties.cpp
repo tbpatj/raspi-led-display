@@ -9,18 +9,30 @@ class DisplayProperties {
         int rowYPixels;
         int dx;
         int dy;
+
+        //Mapping properties
         int ledRightStart;
         int ledRightEnd;
+        int rightL;
+        int rightDx;
+
         int ledLeftStart;
         int ledLeftEnd;
+        int leftL;
+        int leftDx;
+
         int ledTopStart;
         int ledTopEnd;
+        int topL;
+        int topDx;
+
         int ledBottomStart;
         int ledBottomEnd;
-        int rightL;
-        int leftL;
-        int topL;
         int bottomL;
+        int bottomDx;
+
+        bool clockwise;
+        
         DisplayProperties(cv::Mat frame, int LED_COUNT){
             maxX = frame.cols;
             maxY = frame.rows + 10;
@@ -48,19 +60,29 @@ class DisplayProperties {
         void initLEDPos (int right[2], int left[2],int top[2], int bottom[2]){
             ledRightStart = right[0];
             ledRightEnd = right[1];
-            rightL = ledRightEnd - ledRightStart;
+            rightL = abs(ledRightEnd - ledRightStart);
+            rightDx = maxX / rightL;
 
             ledLeftStart = left[0];
             ledLeftEnd = left[1];
-            leftL = ledLeftEnd - ledLeftStart;
+            leftL = abs(ledLeftEnd - ledLeftStart);
+            leftDx = maxX / leftL;
 
             ledTopStart = top[0];
             ledTopEnd = top[1];
-            topL = ledTopEnd - ledTopStart;
+            topL = abs(ledTopEnd - ledTopStart);
+            topDx = maxY / topL;
 
             ledBottomStart = bottom[0];
             ledBottomEnd = bottom[1];
-            bottomL = ledBottomEnd - ledBottomStart;
+            bottomL = abs(ledBottomEnd - ledBottomStart);
+            bottomDx = maxY / bottomL;
+
+            if(ledTopEnd < ledRightStart){
+                clockwise = true;
+            } else {
+                clockwise = false;
+            }
 
         }
 };

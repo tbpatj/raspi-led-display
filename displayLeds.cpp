@@ -35,17 +35,34 @@ int main(){
     while(true){
         fo.updateFrame();
         // fo.downsampleFrame();
+        int start = display.clockwise ? display.ledLeftStart : display.ledLeftEnd;
+        int pos =  display.clockwise ? display.maxY : 0;
+        int dir = display.clockwise ? -1 : 1;
+        int* c;
         for(int i = 0; i <= display.leftL; ++i){
-            led.setColor(i + display.ledLeftStart,0,255,0);
+            c = fo.getColorAt(0,pos + display.leftDx * dir * i);
+            led.setColor(i + start,c[0],c[1],c[2]);
         }
+        start = display.clockwise ? display.ledRightStart : display.ledRightEnd;
+        pos =  display.clockwise ? 0 : display.maxY;
+        dir = display.clockwise ? 1 : -1;
         for(int i = 0; i <= display.rightL; ++i){
-            led.setColor(i + display.ledRightStart,0,255,0);
+            c = fo.getColorAt(display.maxX,pos + display.rightDx * dir * i);
+            led.setColor(i + start,c[0],c[1],c[2]);
         }
+        start = display.clockwise ? display.ledBottomStart :display.ledBottomEnd;
+        pos =  display.clockwise ? display.maxX : 0;
+        dir = display.clockwise ? -1 : 1;
         for(int i = 0; i <= display.bottomL; ++i){
-            led.setColor(i + display.ledBottomStart,255,0,0);
+            c = fo.getColorAt(pos + display.bottomDx * dir * i,display.maxY);
+            led.setColor(i + start,c[0],c[1],c[2]);
         }
+        start = display.clockwise ? display.ledTopStart :display.ledTopEnd;
+        pos =  display.clockwise ? 0 : display.maxX;
+        dir = display.clockwise ? 1 : -1;
         for(int i = 0; i <= display.topL; ++i){
-            led.setColor(i + display.ledTopStart,255,0,0);
+            c = fo.getColorAt(pos + display.rightDx * dir * i,0);
+            led.setColor(i + start,c[0],c[1],c[2]);
         }
         led.render();
         fo.show();
