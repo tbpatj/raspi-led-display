@@ -19,6 +19,14 @@ public:
         channel->strip_type = WS2811_STRIP_GRB; // Set the correct color order for WS2812B
     }
 
+    void setColor(int index, int r, int g, int b){
+        channel.leds[index] = (r << 16) | (g << 8) | (b);
+    }
+
+    void render(){
+        ws2811_render(&ledstring);
+    }
+
     bool init() {
         if (ws2811_init(&ledstring)) {
             std::cerr << "ws2811_init failed" << std::endl;

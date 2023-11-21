@@ -21,16 +21,22 @@ int main(){
     fo.downsampleFrame();
     DisplayProperties display(fo.getFrame(),LED_COUNT);
     display.printValues();
+
+    LEDStrip led(LED_PIN,LED_COUNT);
+    if(!led.init()){
+        return -1;
+    }
+
+    led.setColor(0,255,0,0);
+    led.setColor(20,0,255,0);
+    led.setColor(30,0,0,255);
+    led.render();
     while(true){
         fo.updateFrame();
         fo.show();
         if(cv::waitKey(30) >= 0){
 			break;
 	    }
-    }
-    LEDStrip led(LED_PIN,LED_COUNT);
-    if(!led.init()){
-        return -1;
     }
     // //Initialize Webcam scripts
 	// cv::VideoCapture cap(0);
