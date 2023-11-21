@@ -29,13 +29,12 @@ int main(){
     }
 
     led.setColor(display.rowXPixels,255,0,0);
-    led.setColor(20,0,255,0);
-    led.setColor(30,0,0,255);
+    led.setColor(5,0,255,0);
+    led.setColor(10,0,0,255);
     led.render();
     while(true){
-        fo.getFrame();
         fo.updateFrame();
-        fo.downsampleFrame();
+        // fo.downsampleFrame();
         for(int i = display.ledLeftStart; i <= display.leftL; ++i){
             led.setColor(i,0,255,0);
         }
