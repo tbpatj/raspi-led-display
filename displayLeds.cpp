@@ -20,6 +20,13 @@ int main(){
     fo.downsampleFrame();
     DisplayProperties display(fo.getFrame(),LED_COUNT);
     display.printValues();
+    while(true){
+        fo.updateFrame();
+        fo.show();
+        if(cv::waitKey(30) >= 0){
+			break;
+	    }
+    }
     // //Initialize Webcam scripts
 	// cv::VideoCapture cap(0);
 	
