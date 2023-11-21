@@ -33,6 +33,7 @@ int main(){
     led.setColor(30,0,0,255);
     led.render();
     while(true){
+        fo.getFrame();
         fo.updateFrame();
         fo.downsampleFrame();
         for(int i = display.ledLeftStart; i <= display.leftL; ++i){
@@ -47,6 +48,7 @@ int main(){
         for(int i = display.ledTopStart; i <= display.topL; ++i){
             led.setColor(i,255,0,0);
         }
+        fo.show();
         if(cv::waitKey(30) >= 0){
 			break;
 	    }
