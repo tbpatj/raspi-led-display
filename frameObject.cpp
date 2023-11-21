@@ -26,9 +26,7 @@ class FrameObject {
             cv::resize(frame,downsampledFrame,downsampledSize);
             frame = downsampledFrame;
        }
-       FrameObject(int inWidth){
-            cv::VideoCapture newCap(0)
-            cap = newCap;
+       FrameObject(int inWidth) : cap(0){
             //resize the image to the new target width and height
             if(!cap.isOpened()){
                 std::cerr << "Error: couldn't open the webcam." << std::endl;
