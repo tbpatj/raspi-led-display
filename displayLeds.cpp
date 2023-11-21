@@ -14,14 +14,14 @@ using namespace std;
 
 #define LED_COUNT 47      // Number of LEDs in the strip
 #define LED_PIN 18         // GPIO pin connected to the data input of the LED strip
-
+#define LED_POS = {{0,14},{15,23},{24,37},{38,46}}
 
 int main(){
     FrameObject fo(100);
     fo.downsampleFrame();
     DisplayProperties display(fo.getFrame(),LED_COUNT);
     display.printValues();
-    display.initLEDPos({0,14},{15,23},{24,37},{38,46});
+    display.initLEDPos(LED_POS[0],LED_POS[1],LED_POS[2],LED_POS[3]);
 
     LEDStrip led(LED_PIN,LED_COUNT);
     if(!led.init()){
