@@ -34,6 +34,10 @@ class FrameObject {
             cv::resize(frame,downsampledFrame,downsampledSize);
             frame = downsampledFrame;
        }
+       void blurFrame(){
+        int blurSize = 5;
+        cv:GaussianBlur(frame,frame,cv::Size(blurSize,blurSize),1);
+       }
        FrameObject(int inWidth) : cap(0){
             //resize the image to the new target width and height
             if(!cap.isOpened()){

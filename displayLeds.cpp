@@ -35,11 +35,12 @@ int main(){
     while(true){
         fo.updateFrame();
         fo.downsampleFrame();
+        fo.blurFrame();
         int start = display.clockwise ? display.ledLeftStart : display.ledLeftEnd;
         int pos =  display.clockwise ? display.maxY - 1 : 0;
         int dir = display.clockwise ? -1 : 1;
         cv::Vec3b c;
-        c = fo.getColorAt(0,pos + display.leftDx * dir * 0);
+        c = fo.getColorAt(0,0);
         std::cout << "start: " << start << " pos: " << pos << " dir: " << dir << " clockwise: " << display.clockwise << std::endl;
         std::cout << "r: " << c[0] << " g: " << c[1] << " b: " << c[2] << std::endl;
         for(int i = 0; i <= display.leftL; ++i){
