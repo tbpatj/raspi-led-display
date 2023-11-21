@@ -52,7 +52,7 @@ class DisplayProperties {
 
             ledLeftStart = left[0];
             ledLeftEnd = left[1];
-            leftL = ledLeftEnd - ledLeftEnd;
+            leftL = ledLeftEnd - ledLeftStart;
 
             ledTopStart = top[0];
             ledTopEnd = top[1];

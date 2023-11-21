@@ -14,7 +14,7 @@ using namespace std;
 
 #define LED_COUNT 47      // Number of LEDs in the strip
 #define LED_PIN 18         // GPIO pin connected to the data input of the LED strip
-int LED_POS[4][2] = {{0,14},{15,23},{24,37},{38,46}};
+int LED_POS[4][2] = {{38,46},{15,23},{24,37},{0,14}};
 
 int main(){
     FrameObject fo(100);
