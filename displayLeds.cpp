@@ -35,17 +35,17 @@ int main(){
     while(true){
         fo.updateFrame();
         // fo.downsampleFrame();
-        for(int i = display.ledLeftStart; i <= display.leftL; ++i){
-            led.setColor(i,0,255,0);
+        for(int i = 0; i <= display.leftL; ++i){
+            led.setColor(i + display.ledLeftStart,0,255,0);
         }
-        for(int i = display.ledRightStart; i <= display.rightL; ++i){
-            led.setColor(i,0,255,0);
+        for(int i = 0; i <= display.rightL; ++i){
+            led.setColor(i + display.ledRightStart,0,255,0);
         }
-        for(int i = display.ledBottomStart; i <= display.bottomL; ++i){
-            led.setColor(i,255,0,0);
+        for(int i = 0; i <= display.bottomL; ++i){
+            led.setColor(i + display.ledBottomStart,255,0,0);
         }
-        for(int i = display.ledTopStart; i <= display.topL; ++i){
-            led.setColor(i,255,0,0);
+        for(int i = 0; i <= display.topL; ++i){
+            led.setColor(i + display.ledTopStart,255,0,0);
         }
         led.render();
         fo.show();
