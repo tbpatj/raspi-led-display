@@ -73,10 +73,10 @@ int main(){
     std::cout << "dx: " << dx << std::endl;
     std::cout << "dy: " << dy << std::endl;
     
-    void setStripColor(int i, int x, int y) {
-     cv::Vec3b color = downsampledFrame.at<cv::Vec3b>(x,y);
-      channel.leds[i] = (color[0] << 16) | (color[1] << 8) | (color[2]); // GRB color order: Green, Red, Blue
-    };
+    // void setStripColor(int i, int x, int y) {
+    //  cv::Vec3b color = downsampledFrame.at<cv::Vec3b>(x,y);
+    //   channel.leds[i] = (color[0] << 16) | (color[1] << 8) | (color[2]); // GRB color order: Green, Red, Blue
+    // };
 	//Loop through the frames given to us and update the strip accordingly
 	while(true){
 		cap >> frame;
@@ -91,18 +91,18 @@ int main(){
              
             //assign the top of the led strip
             for (int i = 0; i < rowXPixels - 1; ++i) {
-                setStripColor(i, maxX - dx * i,maxY);
+                // setStripColor(i, maxX - dx * i,maxY);
             }
             
             channel.leds[0] = (255 << 16) | (0 << 8) | (0);
             for(int i = 0; i < rowYPixels - 1; ++i){
-                setStripColor(i + rowXPixels - 1, 0,maxY - i * dy);
+                // setStripColor(i + rowXPixels - 1, 0,maxY - i * dy);
             }
             
             channel.leds[rowXPixels - 1] = (255 << 16) | (0 << 8) | (0);
             
             for(int i = 0; i < rowXPixels - 1; ++i){
-                 setStripColor(i + rowXPixels - 1 + rowYPixels - 1,dx * i, 0);
+                //  setStripColor(i + rowXPixels - 1 + rowYPixels - 1,dx * i, 0);
             }
             
             channel.leds[rowXPixels - 1 + rowYPixels - 1] = (255 << 16) | (0 << 8) | (0);
