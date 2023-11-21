@@ -28,6 +28,10 @@ int main(){
 			break;
 	    }
     }
+    LEDStrip led(LED_PIN,LED_COUNT);
+    if(!led.init()){
+        return -1;
+    }
     // //Initialize Webcam scripts
 	// cv::VideoCapture cap(0);
 	
