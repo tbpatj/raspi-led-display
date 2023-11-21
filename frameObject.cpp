@@ -17,12 +17,9 @@ class FrameObject {
        cv::Mat getFrame(){
         return frame;
        }
-       array< int, 3 > getColorAt(int x, int y){
+       cv::Vec3b getColorAt(int x, int y){
             cv::Vec3b color = frame.at<cv::Vec3b>(x,y);
-            array<int,3> c;
-            c[0] = color[0];
-            c[1] = color[1];
-            c[2] = color[2];
+            cv::Vec3b c(color[0],color[1],color[2]);
             return c;
        }
        void updateFrame(){

@@ -38,7 +38,7 @@ int main(){
         int start = display.clockwise ? display.ledLeftStart : display.ledLeftEnd;
         int pos =  display.clockwise ? display.maxY : 0;
         int dir = display.clockwise ? -1 : 1;
-        array<int,3> c;
+        cv::Vec3b c;
         for(int i = 0; i <= display.leftL; ++i){
             c = fo.getColorAt(0,pos + display.leftDx * dir * i);
             led.setColor(i + start,c[0],c[1],c[2]);
