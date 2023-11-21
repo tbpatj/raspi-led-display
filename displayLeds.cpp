@@ -16,6 +16,8 @@ using namespace std;
 
 int main(){
     return 0;
+    FrameObject fo(100);
+    fo.show();
     // //Initialize Webcam scripts
 	// cv::VideoCapture cap(0);
 	

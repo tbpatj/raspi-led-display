@@ -17,6 +17,9 @@ class FrameObject {
        void updateFrame(){
         cap >> frame;
        }
+       void show(){
+        cv::imshow("Webcam",frame);
+       }
        void downsampleFrame(){
             cv::Size downsampledSize(targetWidth,targetHeight);
             cv::Mat downsampledFrame;
