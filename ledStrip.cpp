@@ -20,7 +20,7 @@ public:
     }
 
     void setColor(int index, int r, int g, int b){
-        channel.leds[index] = (r << 16) | (g << 8) | (b);
+        channel->leds[index] = (r << 16) | (g << 8) | (b);
     }
 
     void render(){
