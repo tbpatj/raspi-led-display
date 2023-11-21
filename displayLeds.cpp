@@ -39,6 +39,9 @@ int main(){
         int pos =  display.clockwise ? display.maxY : 0;
         int dir = display.clockwise ? -1 : 1;
         cv::Vec3b c;
+        c = fo.getColorAt(0,pos + display.leftDx * dir * 0);
+        std::cout << "start: " << start << " pos: " << pos << " dir: " << dir << " clockwise: " << display.clockwise << std::endl;
+        std::cout << "r: " << c[0] << " g: " << c[1] << " b: " << c[2] << std::endl;
         for(int i = 0; i <= display.leftL; ++i){
             c = fo.getColorAt(0,pos + display.leftDx * dir * i);
             led.setColor(i + start,c[0],c[1],c[2]);
@@ -66,6 +69,7 @@ int main(){
         }
         led.render();
         fo.show();
+        sleep(1);
         if(cv::waitKey(30) >= 0){
 			break;
 	    }
