@@ -34,7 +34,7 @@ int main(){
     led.render();
     while(true){
         fo.updateFrame();
-        fo.downsampledFrame();
+        fo.downsampleFrame();
         for(int i = display.ledLeftStart; i <= display.leftL; ++i){
             led.setColor(i,0,255,0);
         }

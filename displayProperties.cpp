@@ -12,7 +12,7 @@ class DisplayProperties {
         int ledRightStart;
         int ledRightEnd;
         int ledLeftStart;
-        int ledleftEnd;
+        int ledLeftEnd;
         int ledTopStart;
         int ledTopEnd;
         int ledBottomStart;
@@ -56,7 +56,7 @@ class DisplayProperties {
 
             ledTopStart = top[0];
             ledTopEnd = top[1];
-            topL = ledTopEnd - ledTopStart
+            topL = ledTopEnd - ledTopStart;
 
             ledBottomStart = bottom[0];
             ledBottomEnd = bottom[1];
