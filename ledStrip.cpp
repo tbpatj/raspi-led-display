@@ -19,7 +19,7 @@ public:
         channel->strip_type = WS2811_STRIP_GRB; // Set the correct color order for WS2812B
     }
 
-    void setColor(int index, int r, int g, int b){
+    void setColor(int index, byte r, byte g, byte b){
         channel->leds[index] = (r << 16) | (g << 8) | (b);
     }
 
