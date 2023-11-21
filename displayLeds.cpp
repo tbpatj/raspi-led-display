@@ -60,6 +60,9 @@ int main(){
     int rowYPixels = yPixels / 2;
     int dx = maxX / (rowXPixels);
     int dy = maxY / (rowYPixels);
+
+    DisplayProperties display(downsampledFrame,LED_COUNT);
+    display.printValues();
     
     std::cout << "image width: " << maxX << std::endl;
     std::cout << "image height: " << maxY << std::endl;

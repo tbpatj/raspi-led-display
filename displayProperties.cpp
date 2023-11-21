@@ -33,4 +33,4 @@ class DisplayProperties {
             std::cout << "dx: " << dx << std::endl;
             std::cout << "dy: " << dy << std::endl;
         }
-}
+};
