@@ -36,7 +36,7 @@ int main(){
         fo.updateFrame();
         fo.downsampleFrame();
         int start = display.clockwise ? display.ledLeftStart : display.ledLeftEnd;
-        int pos =  display.clockwise ? display.maxY : 0;
+        int pos =  display.clockwise ? display.maxY - 1 : 0;
         int dir = display.clockwise ? -1 : 1;
         cv::Vec3b c;
         c = fo.getColorAt(0,pos + display.leftDx * dir * 0);
