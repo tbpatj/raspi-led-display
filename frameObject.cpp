@@ -8,6 +8,9 @@ class FrameObject {
        void updateTargets(){
         targetHeight = static_cast<int>((static_cast<double>(targetWidth) / frame.cols) * frame.rows);
        }
+       void setTargetWidth(int nWidth){
+        targetWidth = nWidth;
+       }
        void setFrame( cv::Mat nFrame){
         frame = nFrame;
        }
@@ -31,8 +34,9 @@ class FrameObject {
             if(!cap.isOpened()){
                 std::cerr << "Error: couldn't open the webcam." << std::endl;
 	        }
+            std::cout << "initalized cap object??" << std::endl;
             updateFrame();
-            targetWidth = inWidth;
+            setTargetWidth(inWidth);
             updateTargets();
        }
 };
