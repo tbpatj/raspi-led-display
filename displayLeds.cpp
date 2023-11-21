@@ -16,7 +16,6 @@ using namespace std;
 
 
 int main(){
-    return 0;
     FrameObject fo(100);
     fo.downsampleFrame();
     DisplayProperties display(fo.getFrame(),LED_COUNT);
@@ -102,6 +101,7 @@ int main(){
 	// 	}
 		
 	// }
-	// return 0;
+	return 0;
+
 	
 }
