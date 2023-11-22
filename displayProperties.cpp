@@ -35,7 +35,7 @@ class DisplayProperties {
         
         DisplayProperties(cv::Mat frame, int LED_COUNT){
             maxX = frame.cols;
-            maxY = frame.rows + 10;
+            maxY = frame.rows;
             aspectRatio = static_cast<double>(maxX) / static_cast<double>(maxY);
             xPixels = static_cast<int>(round(static_cast<double>(LED_COUNT) / aspectRatio));
             yPixels = LED_COUNT - xPixels;
