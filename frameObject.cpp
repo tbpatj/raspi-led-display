@@ -39,6 +39,7 @@ class FrameObject {
         cv:GaussianBlur(frame,frame,cv::Size(blurSize,blurSize),1);
        }
        FrameObject(int inWidth) : cap(0){
+        cap.set(cv::CAP_PROP_FPS, 30);
             //resize the image to the new target width and height
             if(!cap.isOpened()){
                 std::cerr << "Error: couldn't open the webcam." << std::endl;
