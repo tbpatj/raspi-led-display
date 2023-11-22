@@ -18,7 +18,8 @@ int LED_POS[4][2] = {{38,46},{15,23},{24,37},{0,14}};
 
 int main(){
     FrameObject fo(100);
-    // fo.downsampleFrame();
+    //make sure to downsample the frame so we are able to blur faster and not working with massive image
+    fo.downsampleFrame();
     DisplayProperties display(fo.getFrame(),LED_COUNT);
     display.printValues();
     display.initLEDPos(LED_POS[0],LED_POS[1],LED_POS[2],LED_POS[3]);
