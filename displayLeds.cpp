@@ -18,7 +18,7 @@ int LED_POS[4][2] = {{38,46},{15,23},{24,37},{0,14}};
 
 int main(){
     FrameObject fo(100);
-    fo.downsampleFrame();
+    // fo.downsampleFrame();
     DisplayProperties display(fo.getFrame(),LED_COUNT);
     display.printValues();
     display.initLEDPos(LED_POS[0],LED_POS[1],LED_POS[2],LED_POS[3]);
@@ -34,8 +34,8 @@ int main(){
     led.render();
     while(true){
         fo.updateFrame();
-        fo.downsampleFrame();
-        fo.blurFrame();
+        // fo.downsampleFrame();
+        // fo.blurFrame();
         int start = display.clockwise ? display.ledLeftStart : display.ledLeftEnd;
         int pos =  display.clockwise ? display.maxY - 1 : 0;
         int dir = display.clockwise ? -1 : 1;
