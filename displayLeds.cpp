@@ -75,7 +75,6 @@ int main(){
         }
         led.render();
         fo.show();
-        sleep(1);
         if(cv::waitKey(30) >= 0){
 			break;
 	    }
