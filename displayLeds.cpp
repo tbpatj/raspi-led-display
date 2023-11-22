@@ -51,6 +51,9 @@ int main(){
             green = static_cast<int>(c[1]);
             blue = static_cast<int>(c[2]);
             led.setColor(i + start,red,green,blue);
+            std::cout << "r: " << red << " y " << y << " pos " << pos << std::endl;
+            sleep(1);
+            led.render();
         }
         start = display.clockwise ? display.ledRightStart : display.ledRightEnd;
         pos =  display.clockwise ? 0 : display.maxY;
