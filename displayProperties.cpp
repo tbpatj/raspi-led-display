@@ -61,22 +61,22 @@ class DisplayProperties {
             ledRightStart = right[0];
             ledRightEnd = right[1];
             rightL = abs(ledRightEnd - ledRightStart);
-            rightDx = maxX / rightL;
+            rightDx = maxY / rightL;
 
             ledLeftStart = left[0];
             ledLeftEnd = left[1];
             leftL = abs(ledLeftEnd - ledLeftStart);
-            leftDx = maxX / leftL;
+            leftDx = maxY / leftL;
 
             ledTopStart = top[0];
             ledTopEnd = top[1];
             topL = abs(ledTopEnd - ledTopStart);
-            topDx = maxY / topL;
+            topDx = maxX / topL;
 
             ledBottomStart = bottom[0];
             ledBottomEnd = bottom[1];
             bottomL = abs(ledBottomEnd - ledBottomStart);
-            bottomDx = maxY / bottomL;
+            bottomDx = maxX / bottomL;
 
             if(ledTopEnd < ledRightStart){
                 clockwise = true;
