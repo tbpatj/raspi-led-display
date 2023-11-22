@@ -43,7 +43,7 @@ int main(){
         int red;
         int green;
         int blue;
-       
+       std::cout << fo.getFrame().rows << " rows " << std::endl;
         for(int i = 0; i <= display.leftL; ++i){
             int y = pos + display.leftDx * dir * i;
             c = fo.getColorAt(0,pos + display.leftDx * dir * i);
@@ -51,7 +51,7 @@ int main(){
             green = static_cast<int>(c[1]);
             blue = static_cast<int>(c[2]);
             led.setColor(i + start,red,green,blue);
-            std::cout << "r: " << red << " y " << y << " pos " << pos << std::endl;
+            std::cout << "r: " << red << " y " << y << " pos " << pos << " i " << i << std::endl;
             sleep(1);
             led.render();
         }
