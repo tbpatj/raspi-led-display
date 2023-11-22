@@ -56,14 +56,14 @@ int main(){
         pos =  display.clockwise ? 0 : display.maxY - 1;
         dir = display.clockwise ? 1 : -1;
         for(int i = 0; i <= display.rightL; ++i){
-            c = fo.getColorAt(display.maxX,pos + display.rightDx * dir * i);
+            c = fo.getColorAt(display.maxX - 1,pos + display.rightDx * dir * i);
             led.setColor(i + start,c[0],c[1],c[2]);
         }
         start = display.clockwise ? display.ledBottomStart :display.ledBottomEnd;
         pos =  display.clockwise ? display.maxX - 1 : 0;
         dir = display.clockwise ? -1 : 1;
         for(int i = 0; i <= display.bottomL; ++i){
-            c = fo.getColorAt(pos + display.bottomDx * dir * i,display.maxY);
+            c = fo.getColorAt(pos + display.bottomDx * dir * i,display.maxY - 1);
             led.setColor(i + start,c[0],c[1],c[2]);
         }
         start = display.clockwise ? display.ledTopStart :display.ledTopEnd;
