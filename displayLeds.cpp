@@ -40,18 +40,20 @@ int main(){
         int pos =  display.clockwise ? display.maxY - 1 : 0;
         int dir = display.clockwise ? -1 : 1;
         cv::Vec3b c;
-        c = fo.getColorAt(0,0);
-        int red = static_cast<int>(c[0]);
-        int green = static_cast<int>(c[1]);
-        int blue = static_cast<int>(c[2]);
-        std::cout << "start: " << start << " pos: " << pos << " dir: " << dir << " clockwise: " << display.clockwise << std::endl;
-        std::cout << "r: " << red << " g: " << green << " b: " << blue << std::endl;
+        int red;
+        int green;
+        int blue;
+       
         for(int i = 0; i <= display.leftL; ++i){
             c = fo.getColorAt(0,pos + display.leftDx * dir * i);
             red = static_cast<int>(c[0]);
             green = static_cast<int>(c[1]);
             blue = static_cast<int>(c[2]);
             led.setColor(i + start,red,green,blue);
+            std::cout << "start: " << start << " pos: " << pos << " dir: " << dir << " clockwise: " << display.clockwise << std::endl;
+            std::cout << "r: " << red << " g: " << green << " b: " << blue << std::endl;
+             led.render();
+              sleep(1);
         }
         start = display.clockwise ? display.ledRightStart : display.ledRightEnd;
         pos =  display.clockwise ? 0 : display.maxY;
