@@ -18,7 +18,7 @@ class FrameObject {
         return frame;
        }
        cv::Vec3b getColorAt(int x, int y){
-            cv::Vec3b color = frame.at<cv::Vec3b>(y,x);
+            cv::Vec3b color = frame.at<cv::Vec3b>(cv::Point(x,y));
             cv::Vec3b c(color[2],color[1],color[0]);
             return c;
        }
