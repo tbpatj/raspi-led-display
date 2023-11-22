@@ -53,21 +53,21 @@ int main(){
             led.setColor(i + start,red,green,blue);
         }
         start = display.clockwise ? display.ledRightStart : display.ledRightEnd;
-        pos =  display.clockwise ? 0 : display.maxY;
+        pos =  display.clockwise ? 0 : display.maxY - 1;
         dir = display.clockwise ? 1 : -1;
         for(int i = 0; i <= display.rightL; ++i){
             c = fo.getColorAt(display.maxX,pos + display.rightDx * dir * i);
             led.setColor(i + start,c[0],c[1],c[2]);
         }
         start = display.clockwise ? display.ledBottomStart :display.ledBottomEnd;
-        pos =  display.clockwise ? display.maxX : 0;
+        pos =  display.clockwise ? display.maxX - 1 : 0;
         dir = display.clockwise ? -1 : 1;
         for(int i = 0; i <= display.bottomL; ++i){
             c = fo.getColorAt(pos + display.bottomDx * dir * i,display.maxY);
             led.setColor(i + start,c[0],c[1],c[2]);
         }
         start = display.clockwise ? display.ledTopStart :display.ledTopEnd;
-        pos =  display.clockwise ? 0 : display.maxX;
+        pos =  display.clockwise ? 0 : display.maxX - 1;
         dir = display.clockwise ? 1 : -1;
         for(int i = 0; i <= display.topL; ++i){
             c = fo.getColorAt(pos + display.rightDx * dir * i,0);
