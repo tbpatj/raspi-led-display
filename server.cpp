@@ -7,8 +7,10 @@ void runServer(){
         // Check if the file exists
         if (std::ifstream(filepath)) {
             // Serve the HTML file
-             std::string file_content = httplib::detail::read_file(filepath.c_str());
-            res.set_content(file_content, "text/html");
+            httplib::FileReader fr(filepath.c_str());
+
+            // Serve the HTML content
+            res.set_content(fr.data(), fr.length(), "text/html");
         } else {
             // Return a 404 response if the file doesn't exist
             res.status = 404;
