@@ -1,4 +1,3 @@
-#include <cmath>
 
 class LEDStrip {
 private:
@@ -44,28 +43,28 @@ public:
         cv::Vec3b c;
         for(int i = 0; i <= display.leftL; ++i){
             int y = pos + display.leftDx * dir * i;
-            c = fo.getColorAt(0,max(pos + display.leftDx * dir * i,0));
+            c = fo.getColorAt(0,std::max(pos + display.leftDx * dir * i,0));
             setColor(i + start,c[0],c[1],c[2]);
         }
         start = display.clockwise ? display.ledRightStart : display.ledRightEnd;
         pos =  display.clockwise ? 0 : display.maxY - 1;
         dir = display.clockwise ? 1 : -1;
         for(int i = 0; i <= display.rightL; ++i){
-            c = fo.getColorAt(display.maxX - 1,max(pos + display.rightDx * dir * i,0));
+            c = fo.getColorAt(display.maxX - 1,std::max(pos + display.rightDx * dir * i,0));
             setColor(i + start,c[0],c[1],c[2]);
         }
         start = display.clockwise ? display.ledBottomStart :display.ledBottomEnd;
         pos =  display.clockwise ? display.maxX - 1 : 0;
         dir = display.clockwise ? -1 : 1;
         for(int i = 0; i <= display.bottomL; ++i){
-            c = fo.getColorAt(max(pos + display.bottomDx * dir * i,0),display.maxY - 1);
+            c = fo.getColorAt(std::max(pos + display.bottomDx * dir * i,0),display.maxY - 1);
             setColor(i + start,c[0],c[1],c[2]);
         }
         start = display.clockwise ? display.ledTopStart :display.ledTopEnd;
         pos =  display.clockwise ? 0 : display.maxX - 1;
         dir = display.clockwise ? 1 : -1;
         for(int i = 0; i <= display.topL; ++i){
-            c = fo.getColorAt(max(pos + display.rightDx * dir * i,0),0);
+            c = fo.getColorAt(std::max(pos + display.rightDx * dir * i,0),0);
             setColor(i + start,c[0],c[1],c[2]);
         }
         render();
