@@ -1,6 +1,7 @@
 #include <opencv2/opencv.hpp>
 #include <cmath>
 #include <iostream>
+#include <sstream>
 #include <cstdlib>
 #include <cstring>
 #include <unistd.h>
