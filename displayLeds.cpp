@@ -11,7 +11,6 @@
 #include "frameObject.cpp"
 #include "ledStrip.cpp"
 #include "server.cpp"
-#include "../cpp-httplib/httplib.h"
 using namespace std;
 //compile script
 //g++ displayLeds.cpp -o test `pkg-config --cflags --libs opencv4` -I/usr/local/include/ws2811 -lws2811

@@ -1,4 +1,4 @@
-
+#include "../cpp-httplib/httplib.h"
 void runServer(){
     httplib::Server svr;
 
@@ -22,7 +22,7 @@ void runServer(){
     src.Post("/indices",[](const httplib::Request& req, httplib::Response& res){
         std::cout << req << std::endl;
         // std::cout << res << std::endl;
-    }
+    };
 
     svr.listen("0.0.0.0", 3000);
 
