@@ -35,7 +35,7 @@ public:
         return true;
     }
 
-    void mapLEDs(FrameObject *fo,DisplayProperties *display) {
+    void mapLEDs(FrameObject fo,DisplayProperties display) {
         int start = display.clockwise ? display.ledLeftStart : display.ledLeftEnd;
         int pos =  display.clockwise ? display.maxY - 1 : 0;
         int dir = display.clockwise ? -1 : 1;
