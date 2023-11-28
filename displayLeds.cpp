@@ -5,6 +5,8 @@
 #include <cstring>
 #include <unistd.h>
 #include <ws2811.h>
+#include <thread>
+#include <mutex>
 #include "displayProperties.cpp"
 #include "frameObject.cpp"
 #include "ledStrip.cpp"
@@ -17,8 +19,8 @@ using namespace std;
 #define LED_PIN 18         // GPIO pin connected to the data input of the LED strip
 int LED_POS[4][2] = {{38,47},{15,23},{24,37},{0,14}};
 
-int main(){
-    httplib::Server svr;
+void runServer(){
+httplib::Server svr;
 
     svr.Get("/", [](const httplib::Request& req, httplib::Response& res) {
         res.set_content("Hello, World!", "text/plain");
@@ -27,8 +29,12 @@ int main(){
 
     svr.listen("0.0.0.0", 3000);
 
-    // You can add more routes for different paths
+}
+
+int main(){
     
+    // You can add more routes for different paths
+    std::thread serverThread(runServer);
     FrameObject fo(100);
     //make sure to downsample the frame so we are able to blur faster and not working with massive image
     fo.downsampleFrame();
@@ -55,8 +61,10 @@ int main(){
 			break;
 	    }
     }
+
+    serverThread.join();
     
-    std::cout << "test" << std::endl;
+    std::cout << "end of script" << std::endl;
     return 0;
 }
 
