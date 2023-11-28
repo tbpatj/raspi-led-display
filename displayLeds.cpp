@@ -55,6 +55,7 @@ int main(){
         fo.updateFrame();
         fo.downsampleFrame();
         fo.blurFrame();
+        led.mapLEDs(fo,display);
         
         // fo.show();
         if(cv::waitKey(30) >= 0){
