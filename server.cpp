@@ -19,7 +19,7 @@ void runServer(){
         std::cout << "hit" << std::endl;
     });
 
-    srv.Get("/indices",[](const httplib::Request& req, httplib::Response& res) {
+    svr.Get("/indices",[](const httplib::Request& req, httplib::Response& res) {
         std::ostringstream json_stream;
         json_stream << "{";
         json_stream << "\"right\": {\"s\": " << LED_PIN[0][0] << ", \"e\": " << LED_PIN[0][1] << "},";
@@ -27,7 +27,8 @@ void runServer(){
         json_stream << "\"top\": {\"s\": " << LED_PIN[2][0] << ", \"e\": " << LED_PIN[2][1] << "},";
         json_stream << "\"bottom\": {\"s\": " << LED_PIN[3][0] << ", \"e\": " << LED_PIN[3][1] << "}";
         json_stream << "}";
-        res.set_content(json_stream, "application/json")
+        std::string json_str = json_stream.str();
+        res.set_content(json_str, "application/json")
     });
 
     svr.set_mount_point("/static", "./build/static");

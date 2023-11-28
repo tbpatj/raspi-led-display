@@ -12,7 +12,7 @@
 #include "displayProperties.cpp"
 #include "frameObject.cpp"
 #include "ledStrip.cpp"
-#include "server.cpp"
+
 using namespace std;
 //compile script
 //g++ displayLeds.cpp -o test `pkg-config --cflags --libs opencv4` -I/usr/local/include/ws2811 -lws2811
@@ -20,6 +20,8 @@ using namespace std;
 #define LED_COUNT 47      // Number of LEDs in the strip
 #define LED_PIN 18         // GPIO pin connected to the data input of the LED strip
 int LED_POS[4][2] = {{38,47},{15,23},{24,37},{0,14}};
+
+#include "server.cpp"
 
 int main(){
     
