@@ -19,7 +19,7 @@ void runServer(){
 
     ret = svr.set_mount_point("/static", "./build/static");
 
-    src.Post("/indices",[](const httplib::Request& req, httplib::Response& res){
+    svr.Post("/indices",[](const httplib::Request& req, httplib::Response& res){
         std::cout << req << std::endl;
         // std::cout << res << std::endl;
     };
