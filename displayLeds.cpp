@@ -22,12 +22,13 @@ int main(){
 
     svr.Get("/", [](const httplib::Request& req, httplib::Response& res) {
         res.set_content("Hello, World!", "text/plain");
+        std::cout << "hit" << std::endl;
     });
 
     // You can add more routes for different paths
 
-    svr.listen("localhost", 8080);
-
+    svr.listen("localhost", 3000);
+    std::cout << "test" << std::endl;
     return 0;
 }
 
