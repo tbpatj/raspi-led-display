@@ -1,3 +1,5 @@
+#include <cmath>
+
 class LEDStrip {
 private:
     int led_count;
