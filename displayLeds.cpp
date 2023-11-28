@@ -27,12 +27,13 @@ int main(){
 
     // You can add more routes for different paths
 
-    svr.listen("localhost", 3000);
+    svr.listen("0.0.0.0", 3000);
     std::cout << "test" << std::endl;
     return 0;
 }
 
 // int main(){
+
 //     FrameObject fo(100);
 //     //make sure to downsample the frame so we are able to blur faster and not working with massive image
 //     fo.downsampleFrame();
