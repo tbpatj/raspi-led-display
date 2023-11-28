@@ -10,6 +10,7 @@
 #include "displayProperties.cpp"
 #include "frameObject.cpp"
 #include "ledStrip.cpp"
+#include "server.cpp"
 #include "../cpp-httplib/httplib.h"
 using namespace std;
 //compile script
@@ -18,18 +19,6 @@ using namespace std;
 #define LED_COUNT 47      // Number of LEDs in the strip
 #define LED_PIN 18         // GPIO pin connected to the data input of the LED strip
 int LED_POS[4][2] = {{38,47},{15,23},{24,37},{0,14}};
-
-void runServer(){
-httplib::Server svr;
-
-    svr.Get("/", [](const httplib::Request& req, httplib::Response& res) {
-        res.set_content("Hello, World!", "text/plain");
-        std::cout << "hit" << std::endl;
-    });
-
-    svr.listen("0.0.0.0", 3000);
-
-}
 
 int main(){
     
