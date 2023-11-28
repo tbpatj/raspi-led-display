@@ -16,12 +16,12 @@ void runServer(){
         std::cout << "hit" << std::endl;
     });
 
-    auto ret = svr.set_mount_point("/static", "./build/static");
+    svr.set_mount_point("/static", "./build/static");
 
-    svr.Post("/indices",[](const httplib::Request& req, httplib::Response& res){
-        std::cout << req << std::endl;
-        // std::cout << res << std::endl;
-    });
+    // svr.Post("/indices",[](const httplib::Request& req, httplib::Response& res){
+    //     std::cout << req << std::endl;
+    //     // std::cout << res << std::endl;
+    // });
 
     svr.listen("0.0.0.0", 3000);
 
