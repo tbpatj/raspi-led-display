@@ -38,7 +38,7 @@ void runServer(){
     svr.Post("/indices", [](const httplib::Request& req, httplib::Response& res) {
          try {
             json requestJson = json::parse(req.body);
-            // int bottomS = requestJson["bottom"]["s"];
+            int bottomS = requestJson["indices"]["bottom"]["s"];
             // std::cout << bottomS << std::endl;
             res.set_content("success","text/plain");
          }catch(const json::exception& e){
