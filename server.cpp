@@ -1,4 +1,22 @@
-#include "../jsoncpp/json.h"
+#include <unordered_map>
+
+std::unordered_map<std::string, std::unordered_map<std::string, int>> parseJson(const std::string& json) {
+    std::unordered_map<std::string, std::unordered_map<std::string, int>> result;
+
+    size_t pos = json.find("\"bottom\":");
+    if (pos != std::string::npos) {
+        size_t start = json.find("\"s\":", pos);
+        size_t end = json.find(",", start);
+
+        if (start != std::string::npos && end != std::string::npos) {
+            std::string value_str = json.substr(start + 4, end - (start + 4));
+            int value = std::stoi(value_str);
+            result["bottom"]["s"] = value;
+        }
+    }
+
+    return result;
+}
 
 void runServer(){
     httplib::Server svr;
@@ -36,13 +54,10 @@ void runServer(){
     svr.set_mount_point("/static", "./build/static");
 
     svr.Post("/indices", [](const Request& req, Response& res) {
-         Json::CharReaderBuilder reader;
-        Json::Value jsonData;
-        std::istringstream bodyStream(req.body);
-        Json::parseFromStream(reader, bodyStream, &jsonData, nullptr);
+          std::unordered_map<std::string, std::unordered_map<std::string, int>> json_data = parseJson(req.body);
 
-        // Accessing the "bottom" object and its "s" property
-        int bottom_s = jsonData["bottom"]["s"].asInt();
+        // Accessing bottom.s
+        int bottom_s = json_data["bottom"]["s"];
         std::cout << bottom_s << std::endl;
         res.set_content("success","text/plain");
     });
