@@ -1,3 +1,5 @@
+#include <json/json.h>
+
 void runServer(){
     httplib::Server svr;
 
@@ -33,9 +35,16 @@ void runServer(){
 
     svr.set_mount_point("/static", "./build/static");
 
-    svr.Post("/indices",[](const httplib::Request& req, httplib::Response& res){
-        std::cout << req << std::endl;
-        // std::cout << res << std::endl;
+    svr.Post("/indices", [](const Request& req, Response& res) {
+         Json::CharReaderBuilder reader;
+        Json::Value jsonData;
+        std::istringstream bodyStream(req.body);
+        Json::parseFromStream(reader, bodyStream, &jsonData, nullptr);
+
+        // Accessing the "bottom" object and its "s" property
+        int bottom_s = jsonData["bottom"]["s"].asInt();
+        std::cout << bottom_s << std::endl;
+        res.set_content("success","text/plain");
     });
 
     svr.listen("0.0.0.0", 3000);
