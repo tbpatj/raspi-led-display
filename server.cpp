@@ -39,7 +39,7 @@ void runServer(){
          try {
             json requestJson = json::parse(req.body);
             int bottomS = requestJson["indices"]["bottom"]["s"];
-            // std::cout << bottomS << std::endl;
+            std::cout << bottomS << std::endl;
             res.set_content("success","text/plain");
          }catch(const json::exception& e){
              std::cerr << "Error parsing JSON: " << e.what() << std::endl;
