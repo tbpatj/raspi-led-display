@@ -34,8 +34,9 @@ void runServer(){
     svr.set_mount_point("/static", "./build/static");
 
     svr.Post("/indices", [](const httplib::Request& req, httplib::Response& res) {
-       
-        std::cout << bottom_s << std::endl;
+        json requestJson = json::parse(req.body);
+        int bottomS = requestJson["bottom"]["s"];
+        std::cout << bottomS << std::endl;
         res.set_content("success","text/plain");
     });
 
