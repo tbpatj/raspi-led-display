@@ -53,7 +53,7 @@ void runServer(){
 
     svr.set_mount_point("/static", "./build/static");
 
-    svr.Post("/indices", [](const Request& req, Response& res) {
+    svr.Post("/indices", [](const httplib::Request& req, httplib::Response& res) {
           std::unordered_map<std::string, std::unordered_map<std::string, int>> json_data = parseJson(req.body);
 
         // Accessing bottom.s
