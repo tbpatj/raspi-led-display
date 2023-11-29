@@ -9,7 +9,7 @@
 #include <thread>
 #include <mutex>
 #include "../cpp-httplib/httplib.h"
-#include "../json/include/json.hpp"
+#include "../json/single_include/nlohmann/json.hpp"
 #include "displayProperties.cpp"
 #include "frameObject.cpp"
 #include "ledStrip.cpp"
