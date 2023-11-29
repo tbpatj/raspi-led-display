@@ -57,14 +57,14 @@ void runServer(){
     svr.Post("/status",[](const httplib::Request& req, httplib::Response& res) {
         try {
             json requestJson = json::parse(req.body);
-            LED_STATUS=requestJson["status"]
+            LED_STATUS=requestJson["status"];
             res.set_content("success","text/plain");
          }catch(const json::exception& e){
              std::cerr << "Error parsing JSON: " << e.what() << std::endl;
             res.status = 400;  // Bad Request
             res.set_content("Error parsing JSON", "text/plain");
          }
-    }
+    });
     svr.Get("/status",[](const httplib::Request& req, httplib::Response& res) {
         std::ostringstream json_stream;
         json_stream << "{" << "\"status\": " << LED_STATUS << "}";
