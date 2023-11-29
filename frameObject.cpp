@@ -35,7 +35,7 @@ class FrameObject {
             frame = downsampledFrame;
        }
        void blurFrame(){
-        int blurSize = 9;
+        int blurSize = 13;
         cv:GaussianBlur(frame,frame,cv::Size(blurSize,blurSize),1);
        }
        FrameObject(int inWidth) : cap(0){

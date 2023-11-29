@@ -53,7 +53,7 @@ int main(){
                 fo.blurFrame();
                 led.mapLEDs(fo,display);
                 
-                // fo.show();
+                fo.show();
                 if(cv::waitKey(30) >= 0){
                     break;
                 }
