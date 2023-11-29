@@ -21,6 +21,7 @@ using namespace std;
 #define LED_COUNT 47      // Number of LEDs in the strip
 #define LED_PIN 18         // GPIO pin connected to the data input of the LED strip
 int LED_POS[4][2] = {{38,47},{15,23},{24,37},{0,14}};
+bool LED_STATUS = true;
 
 #include "server.cpp"
 
@@ -28,6 +29,8 @@ int main(){
     
     // You can add more routes for different paths
     std::thread serverThread(runServer);
+    while(true){
+        LED_STATUS=true;
     FrameObject fo(100);
     //make sure to downsample the frame so we are able to blur faster and not working with massive image
     fo.downsampleFrame();
@@ -44,7 +47,7 @@ int main(){
     led.setColor(5,0,255,0);
     led.setColor(10,0,0,255);
     led.render();
-    while(true){
+    while(LED_STATUS){
         fo.updateFrame();
         fo.downsampleFrame();
         fo.blurFrame();
@@ -52,6 +55,10 @@ int main(){
         
         // fo.show();
         if(cv::waitKey(30) >= 0){
+			break;
+	    }
+    }
+    if(cv::waitKey(30) >= 0){
 			break;
 	    }
     }

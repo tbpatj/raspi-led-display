@@ -42,6 +42,7 @@ void runServer(){
             std::cout << bottomS << std::endl;
             LED_POS[3][0]=bottomS;
             res.set_content("success","text/plain");
+            LED_STATUS=false;
          }catch(const json::exception& e){
              std::cerr << "Error parsing JSON: " << e.what() << std::endl;
             res.status = 400;  // Bad Request
