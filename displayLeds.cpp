@@ -30,37 +30,39 @@ int main(){
     // You can add more routes for different paths
     std::thread serverThread(runServer);
     while(true){
-        LED_STATUS=true;
-    FrameObject fo(100);
-    //make sure to downsample the frame so we are able to blur faster and not working with massive image
-    fo.downsampleFrame();
-    DisplayProperties display(fo.getFrame(),LED_COUNT);
-    display.printValues();
-    display.initLEDPos(LED_POS[0],LED_POS[1],LED_POS[2],LED_POS[3]);
+        if(LED_STATUS){
+            FrameObject fo(100);
+            //make sure to downsample the frame so we are able to blur faster and not working with massive image
+            fo.downsampleFrame();
+            DisplayProperties display(fo.getFrame(),LED_COUNT);
+            display.printValues();
+            display.initLEDPos(LED_POS[0],LED_POS[1],LED_POS[2],LED_POS[3]);
 
-    LEDStrip led(LED_PIN,LED_COUNT);
-    if(!led.init()){
-        return -1;
-    }
+            LEDStrip led(LED_PIN,LED_COUNT);
+            if(!led.init()){
+                return -1;
+            }
 
-    led.setColor(display.rowXPixels,255,0,0);
-    led.setColor(5,0,255,0);
-    led.setColor(10,0,0,255);
-    led.render();
-    while(LED_STATUS){
-        fo.updateFrame();
-        fo.downsampleFrame();
-        fo.blurFrame();
-        led.mapLEDs(fo,display);
-        
-        // fo.show();
+            led.setColor(display.rowXPixels,255,0,0);
+            led.setColor(5,0,255,0);
+            led.setColor(10,0,0,255);
+            led.render();
+            while(LED_STATUS){
+                fo.updateFrame();
+                fo.downsampleFrame();
+                fo.blurFrame();
+                led.mapLEDs(fo,display);
+                
+                // fo.show();
+                if(cv::waitKey(30) >= 0){
+                    break;
+                }
+            }
+        }
         if(cv::waitKey(30) >= 0){
 			break;
 	    }
-    }
-    if(cv::waitKey(30) >= 0){
-			break;
-	    }
+        std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 
     serverThread.join();
