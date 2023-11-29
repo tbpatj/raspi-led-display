@@ -36,10 +36,16 @@ void runServer(){
     svr.set_mount_point("/static", "./build/static");
 
     svr.Post("/indices", [](const httplib::Request& req, httplib::Response& res) {
-        json requestJson = json::parse(req.body);
-        int bottomS = requestJson["bottom"]["s"];
-        std::cout << bottomS << std::endl;
-        res.set_content("success","text/plain");
+         try {
+            json requestJson = json::parse(req.body);
+            int bottomS = requestJson["bottom"]["s"];
+            std::cout << bottomS << std::endl;
+            res.set_content("success","text/plain");
+         }catch(const json::exception& e){
+             std::cerr << "Error parsing JSON: " << e.what() << std::endl;
+            res.status = 400;  // Bad Request
+            res.set_content("Error parsing JSON", "text/plain");
+         }
     });
 
     svr.listen("0.0.0.0", 3000);
