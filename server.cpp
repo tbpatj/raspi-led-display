@@ -1,3 +1,5 @@
+using json = nlohmann::json;
+
 void runServer(){
     httplib::Server svr;
 
