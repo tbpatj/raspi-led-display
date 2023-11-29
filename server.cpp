@@ -1,22 +1,4 @@
-#include <unordered_map>
-
-std::unordered_map<std::string, std::unordered_map<std::string, int>> parseJson(const std::string& json) {
-    std::unordered_map<std::string, std::unordered_map<std::string, int>> result;
-
-    size_t pos = json.find("\"bottom\":");
-    if (pos != std::string::npos) {
-        size_t start = json.find("\"s\":", pos);
-        size_t end = json.find(",", start);
-
-        if (start != std::string::npos && end != std::string::npos) {
-            std::string value_str = json.substr(start + 4, end - (start + 4));
-            int value = std::stoi(value_str);
-            result["bottom"]["s"] = value;
-        }
-    }
-
-    return result;
-}
+#include "../json/include/nlohmann/json.hpp"
 
 void runServer(){
     httplib::Server svr;
@@ -54,10 +36,7 @@ void runServer(){
     svr.set_mount_point("/static", "./build/static");
 
     svr.Post("/indices", [](const httplib::Request& req, httplib::Response& res) {
-          std::unordered_map<std::string, std::unordered_map<std::string, int>> json_data = parseJson(req.body);
-
-        // Accessing bottom.s
-        int bottom_s = json_data["bottom"]["s"];
+       
         std::cout << bottom_s << std::endl;
         res.set_content("success","text/plain");
     });
