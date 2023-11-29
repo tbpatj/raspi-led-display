@@ -40,6 +40,7 @@ void runServer(){
             json requestJson = json::parse(req.body);
             int bottomS = requestJson["indices"]["bottom"]["s"];
             std::cout << bottomS << std::endl;
+            LED_POS[3][0]=bottomS;
             res.set_content("success","text/plain");
          }catch(const json::exception& e){
              std::cerr << "Error parsing JSON: " << e.what() << std::endl;
