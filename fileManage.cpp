@@ -25,7 +25,7 @@ class FileManage {
        }
        std::string read(){
         try{
-            std::ifstream inputFile(fileName);
+            std::ifstream inputFile(filename);
             if (inputFile.is_open()) {
                 // Read the contents of the file into a string
                 std::string fileContents;
