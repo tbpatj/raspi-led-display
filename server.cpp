@@ -1,4 +1,4 @@
-using json = nlohmann::json;
+
 
 void runServer(){
     httplib::Server svr;
@@ -22,12 +22,13 @@ void runServer(){
     });
 
     svr.Get("/indices",[](const httplib::Request& req, httplib::Response& res) {
+        int[4][2] ledPos = options.getLEDPos();
         std::ostringstream json_stream;
         json_stream << "{";
-        json_stream << "\"right\": {\"s\": " << LED_POS[0][0] << ", \"e\": " << LED_POS[0][1] << "},";
-        json_stream << "\"left\": {\"s\": " << LED_POS[1][0] << ", \"e\": " << LED_POS[1][1] << "},";
-        json_stream << "\"top\": {\"s\": " << LED_POS[2][0] << ", \"e\": " << LED_POS[2][1] << "},";
-        json_stream << "\"bottom\": {\"s\": " << LED_POS[3][0] << ", \"e\": " << LED_POS[3][1] << "}";
+        json_stream << "\"right\": {\"s\": " << ledPos[0][0] << ", \"e\": " << ledPos[0][1] << "},";
+        json_stream << "\"left\": {\"s\": " << ledPos[1][0] << ", \"e\": " << ledPos[1][1] << "},";
+        json_stream << "\"top\": {\"s\": " << ledPos[2][0] << ", \"e\": " << ledPos[2][1] << "},";
+        json_stream << "\"bottom\": {\"s\": " << ledPos[3][0] << ", \"e\": " << ledPos[3][1] << "}";
         json_stream << "}";
         std::string json_str = json_stream.str();
         res.set_content(json_str, "application/json");
@@ -38,14 +39,7 @@ void runServer(){
     svr.Post("/indices", [](const httplib::Request& req, httplib::Response& res) {
          try {
             json requestJson = json::parse(req.body);
-            LED_POS[0][0]=requestJson["indices"]["right"]["s"];
-            LED_POS[0][1]=requestJson["indices"]["right"]["e"];
-            LED_POS[1][0]=requestJson["indices"]["left"]["s"];
-            LED_POS[1][1]=requestJson["indices"]["left"]["e"];
-            LED_POS[2][0]=requestJson["indices"]["top"]["s"];
-            LED_POS[2][1]=requestJson["indices"]["top"]["e"];
-            LED_POS[3][0]=requestJson["indices"]["bottom"]["s"];
-            LED_POS[3][1]=requestJson["indices"]["bottom"]["e"];
+            options.setLEDPosFromJson(requestJson);
             res.set_content("success","text/plain");
          }catch(const json::exception& e){
              std::cerr << "Error parsing JSON: " << e.what() << std::endl;
@@ -57,7 +51,7 @@ void runServer(){
     svr.Post("/status",[](const httplib::Request& req, httplib::Response& res) {
         try {
             json requestJson = json::parse(req.body);
-            LED_STATUS=requestJson["status"];
+            options.setLEDStatus(requestJson["status"]);
             res.set_content("success","text/plain");
          }catch(const json::exception& e){
              std::cerr << "Error parsing JSON: " << e.what() << std::endl;
@@ -67,7 +61,7 @@ void runServer(){
     });
     svr.Get("/status",[](const httplib::Request& req, httplib::Response& res) {
         std::ostringstream json_stream;
-        json_stream << "{" << "\"status\": " << LED_STATUS << "}";
+        json_stream << "{" << "\"status\": " << options.getLEDStatus() << "}";
         std::string json_str = json_stream.str();
         res.set_content(json_str, "application/json");
     });

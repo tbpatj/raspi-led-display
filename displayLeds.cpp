@@ -14,15 +14,15 @@
 #include "frameObject.cpp"
 #include "ledStrip.cpp"
 #include "fileManage.cpp"
+#include "options.cpp"
 
 using namespace std;
+using json = nlohmann::json;
 //compile script
 //g++ displayLeds.cpp -o test `pkg-config --cflags --libs opencv4` -I/usr/local/include/ws2811 -lws2811
 
-#define LED_COUNT 47      // Number of LEDs in the strip
-#define LED_PIN 18         // GPIO pin connected to the data input of the LED strip
-int LED_POS[4][2] = {{38,47},{15,23},{24,37},{0,14}};
-bool LED_STATUS = true;
+#define LED_PIN 18        // GPIO pin connected to the data input of the LED strip
+Options options();
 
 #include "server.cpp"
 
@@ -32,25 +32,19 @@ int main(){
     std::thread serverThread(runServer);
     while(true){
         if(LED_STATUS){
-            FrameObject fo(100);
-            //make sure to downsample the frame so we are able to blur faster and not working with massive image
-            fo.downsampleFrame();
-            DisplayProperties display(fo.getFrame(),LED_COUNT);
+            FrameObject fo(options.getResizeWidth());
+            DisplayProperties display(fo.getFrame(),options.getLEDCount);
             display.printValues();
-            display.initLEDPos(LED_POS[0],LED_POS[1],LED_POS[2],LED_POS[3]);
+            int[4][2] ledPos = options.getLEDPos();
+            display.initLEDPos(ledPos[0],ledPos[1],ledPos[2],ledPos[3]);
 
-            LEDStrip led(LED_PIN,LED_COUNT);
+            LEDStrip led(LED_PIN,options.getLEDCount);
             if(!led.init()){
                 return -1;
             }
 
-            led.setColor(display.rowXPixels,255,0,0);
-            led.setColor(5,0,255,0);
-            led.setColor(10,0,0,255);
-            led.render();
             while(LED_STATUS){
                 fo.updateFrame();
-                fo.downsampleFrame();
                 fo.blurFrame();
                 led.mapLEDs(fo,display);
                 

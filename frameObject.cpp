@@ -4,6 +4,7 @@ class FrameObject {
         cv::Mat frame;
         int targetWidth;
         int targetHeight;
+        int blurSize=23;
     public:
        void updateTargets(){
         targetHeight = static_cast<int>((static_cast<double>(targetWidth) / frame.cols) * frame.rows);
@@ -28,14 +29,17 @@ class FrameObject {
        void show(){
         cv::imshow("Webcam",frame);
        }
-       void downsampleFrame(){
-            cv::Size downsampledSize(targetWidth,targetHeight);
+       void downsampleFrame(int width, int height){
+            cv::Size downsampledSize(width,height);
             cv::Mat downsampledFrame;
             cv::resize(frame,downsampledFrame,downsampledSize);
             frame = downsampledFrame;
        }
+       void updateInputResToTarget(){
+          cap.set(cv::CAP_PROP_FRAME_WIDTH, targetWidth);
+          cap.set(cv::CAP_PROP_FRAME_HEIGHT, targetHeight);
+       }
        void blurFrame(){
-        int blurSize = 23;
         cv:GaussianBlur(frame,frame,cv::Size(blurSize,blurSize),1);
        }
        FrameObject(int inWidth) : cap(0){
@@ -48,5 +52,6 @@ class FrameObject {
             updateFrame();
             setTargetWidth(inWidth);
             updateTargets();
+            updateInputResToTarget();
        }
 };
