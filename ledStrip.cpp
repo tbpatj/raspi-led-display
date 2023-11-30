@@ -40,6 +40,7 @@ public:
         for(int i = 0; i <= ledCount; ++i){
             setColor(i,0,0,0);
         }
+        render();
     }
 
     void mapLEDs(FrameObject fo,DisplayProperties display) {
