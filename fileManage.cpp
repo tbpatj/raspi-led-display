@@ -20,7 +20,7 @@ class FileManage {
                     std::cerr << "Error opening the file: " << filename << std::endl;
                 }
             }catch(const std::exception& e){
-                std::cerr << e << std::endl;
+                std::cerr << "Exception: " << e.what() << std::endl;
             }
        }
        std::string read(){
@@ -40,7 +40,7 @@ class FileManage {
                 return "";
             }
         }catch(const std::exception& e){
-            std::cerr << e << std::endl;
+            std::cerr << "Exception: " << e.what() << std::endl;
             return "";
         }
        }
