@@ -31,18 +31,18 @@ int main(){
     // You can add more routes for different paths
     std::thread serverThread(runServer);
     while(true){
-        if(LED_STATUS){
+        if(options.getLEDStatus()){
             FrameObject fo(options.getResizeWidth());
-            DisplayProperties display(fo.getFrame(),options.getLEDCount);
+            DisplayProperties display(fo.getFrame(),options.getLEDCount());
             display.printValues();
             display.initLEDPos(options.LED_POS[0],options.LED_POS[1],options.LED_POS[2],options.LED_POS[3]);
 
-            LEDStrip led(LED_PIN,options.getLEDCount);
+            LEDStrip led(LED_PIN,options.getLEDCount());
             if(!led.init()){
                 return -1;
             }
 
-            while(LED_STATUS){
+            while(options.getLEDStatus()){
                 fo.updateFrame();
                 fo.blurFrame();
                 led.mapLEDs(fo,display);
