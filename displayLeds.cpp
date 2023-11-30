@@ -22,12 +22,12 @@ using namespace std;
 //g++ displayLeds.cpp -o test `pkg-config --cflags --libs opencv4` -I/usr/local/include/ws2811 -lws2811
 
 #define LED_PIN 18        // GPIO pin connected to the data input of the LED strip
-MyOptions options();
+MyOptions options;
 
 #include "server.cpp"
 
 int main(){
-    
+    options();
     // You can add more routes for different paths
     std::thread serverThread(runServer);
     while(true){
