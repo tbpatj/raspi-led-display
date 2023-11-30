@@ -36,6 +36,12 @@ public:
         return true;
     }
 
+    void turnOff(int ledCount){
+        for(int i = 0; i <= ledCount; ++i){
+            setColor(i,0,0,0);
+        }
+    }
+
     void mapLEDs(FrameObject fo,DisplayProperties display) {
         int start = display.clockwise ? display.ledLeftStart : display.ledLeftEnd;
         int pos =  display.clockwise ? display.maxY - 1 : 0;

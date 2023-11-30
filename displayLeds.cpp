@@ -55,6 +55,7 @@ int main(){
                         break;
                     }
                 }
+                led.turnOff();
             }catch(const cv::Exception& e){
                 std::cerr << "Error creating video object: " << std::endl;
                 options.setLEDStatus(false);
