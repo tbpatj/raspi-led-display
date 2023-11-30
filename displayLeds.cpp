@@ -27,7 +27,6 @@ MyOptions options;
 #include "server.cpp"
 
 int main(){
-    options();
     // You can add more routes for different paths
     std::thread serverThread(runServer);
     while(true){
