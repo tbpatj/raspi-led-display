@@ -31,25 +31,29 @@ int main(){
     std::thread serverThread(runServer);
     while(true){
         if(options.getLEDStatus()){
-            FrameObject fo(options.getResizeWidth());
-            DisplayProperties display(fo.getFrame(),options.getLEDCount());
-            display.printValues();
-            display.initLEDPos(options.LED_POS[0],options.LED_POS[1],options.LED_POS[2],options.LED_POS[3]);
+            try{
+                FrameObject fo(options.getResizeWidth());
+                DisplayProperties display(fo.getFrame(),options.getLEDCount());
+                display.printValues();
+                display.initLEDPos(options.LED_POS[0],options.LED_POS[1],options.LED_POS[2],options.LED_POS[3]);
 
-            LEDStrip led(LED_PIN,options.getLEDCount());
-            if(!led.init()){
-                return -1;
-            }
-
-            while(options.getLEDStatus()){
-                fo.updateFrame();
-                fo.blurFrame();
-                led.mapLEDs(fo,display);
-                
-                fo.show();
-                if(cv::waitKey(30) >= 0){
-                    break;
+                LEDStrip led(LED_PIN,options.getLEDCount());
+                if(!led.init()){
+                    return -1;
                 }
+
+                while(options.getLEDStatus()){
+                    fo.updateFrame();
+                    fo.blurFrame();
+                    led.mapLEDs(fo,display);
+                    
+                    fo.show();
+                    if(cv::waitKey(30) >= 0){
+                        break;
+                    }
+                }
+            }catch(const cv::Exception& e){
+                std::cerr << "Error creating video object: " << std::endl;
             }
         }
         if(cv::waitKey(30) >= 0){
