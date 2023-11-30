@@ -1,12 +1,13 @@
 class Options {
     private:
-        int LED_POS[4][2] = {{38,47},{15,23},{24,37},{0,14}};
         bool LED_STATUS = true;
         int BLUR_SIZE = 23;
         int LED_COUNT = 47;
         int RESIZE_WIDTH = 100;
         FileManage fm;
+        
     public:
+        int LED_POS[4][2] = {{38,47},{15,23},{24,37},{0,14}};
         Options():fm("options.json"){
             std::string json_str = fm.read();
             if(json_str != ""){
@@ -44,9 +45,6 @@ class Options {
 
             std::string jsonString = myJson.dump();
             fm.write(jsonString);
-        }
-        int[4][2] getLEDPos(){
-            return LED_POS;
         }
         void setLEDPosFromJson(json inJson){
             LED_POS[0][0]=inJson["indices"]["right"]["s"];

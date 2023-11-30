@@ -10,6 +10,7 @@
 #include <mutex>
 #include "../cpp-httplib/httplib.h"
 #include "../json/single_include/nlohmann/json.hpp"
+using json = nlohmann::json;
 #include "displayProperties.cpp"
 #include "frameObject.cpp"
 #include "ledStrip.cpp"
@@ -17,7 +18,6 @@
 #include "options.cpp"
 
 using namespace std;
-using json = nlohmann::json;
 //compile script
 //g++ displayLeds.cpp -o test `pkg-config --cflags --libs opencv4` -I/usr/local/include/ws2811 -lws2811
 
@@ -35,8 +35,7 @@ int main(){
             FrameObject fo(options.getResizeWidth());
             DisplayProperties display(fo.getFrame(),options.getLEDCount);
             display.printValues();
-            int[4][2] ledPos = options.getLEDPos();
-            display.initLEDPos(ledPos[0],ledPos[1],ledPos[2],ledPos[3]);
+            display.initLEDPos(options.LED_POS[0],options.LED_POS[1],options.LED_POS[2],options.LED_POS[3]);
 
             LEDStrip led(LED_PIN,options.getLEDCount);
             if(!led.init()){

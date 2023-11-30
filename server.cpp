@@ -22,13 +22,12 @@ void runServer(){
     });
 
     svr.Get("/indices",[](const httplib::Request& req, httplib::Response& res) {
-        int[4][2] ledPos = options.getLEDPos();
         std::ostringstream json_stream;
         json_stream << "{";
-        json_stream << "\"right\": {\"s\": " << ledPos[0][0] << ", \"e\": " << ledPos[0][1] << "},";
-        json_stream << "\"left\": {\"s\": " << ledPos[1][0] << ", \"e\": " << ledPos[1][1] << "},";
-        json_stream << "\"top\": {\"s\": " << ledPos[2][0] << ", \"e\": " << ledPos[2][1] << "},";
-        json_stream << "\"bottom\": {\"s\": " << ledPos[3][0] << ", \"e\": " << ledPos[3][1] << "}";
+        json_stream << "\"right\": {\"s\": " << options.LED_POS[0][0] << ", \"e\": " << options.LED_POS[0][1] << "},";
+        json_stream << "\"left\": {\"s\": " << options.LED_POS[1][0] << ", \"e\": " << options.LED_POS[1][1] << "},";
+        json_stream << "\"top\": {\"s\": " << options.LED_POS[2][0] << ", \"e\": " << options.LED_POS[2][1] << "},";
+        json_stream << "\"bottom\": {\"s\": " << options.LED_POS[3][0] << ", \"e\": " << options.LED_POS[3][1] << "}";
         json_stream << "}";
         std::string json_str = json_stream.str();
         res.set_content(json_str, "application/json");
