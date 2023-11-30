@@ -1,4 +1,4 @@
-class Options {
+class MyOptions {
     private:
         bool LED_STATUS = true;
         int BLUR_SIZE = 23;
