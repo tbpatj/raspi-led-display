@@ -2,8 +2,8 @@
 
 class FileManage {
     private:
-        std::string filename
-        std::string content
+        std::string filename;
+        std::string content;
     public:
        FileManage(std::string fName) {
         filename = fName;
