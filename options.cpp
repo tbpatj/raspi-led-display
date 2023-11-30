@@ -43,7 +43,7 @@ class MyOptions {
             optionsJson["ledCount"] = LED_COUNT;
             optionsJson["resizeWidth"] = RESIZE_WIDTH;
 
-            std::string jsonString = myJson.dump();
+            std::string jsonString = optionsJson.dump();
             fm.write(jsonString);
         }
         void setLEDPosFromJson(json inJson){
