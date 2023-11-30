@@ -8,7 +8,7 @@ class MyOptions {
         
     public:
         int LED_POS[4][2] = {{38,47},{15,23},{24,37},{0,14}};
-        Options():fm("options.json"){
+        MyOptions():fm("options.json"){
             std::string json_str = fm.read();
             if(json_str != ""){
                 try{
@@ -23,7 +23,7 @@ class MyOptions {
                     LED_POS[3][1]=optionsJson["indices"]["bottom"]["e"];
                     BLUR_SIZE=optionsJson["blurSize"];
                     LED_COUNT=optionsJson["ledCount"];
-                    RESIZE_WIDTH=optionsJSON["resizeWidth"];
+                    RESIZE_WIDTH=optionsJson["resizeWidth"];
                 }catch(const json::exception& e){
                     std::cerr << "Error parsing JSON: " << e.what() << std::endl;
                 }
