@@ -13,6 +13,7 @@
 #include "displayProperties.cpp"
 #include "frameObject.cpp"
 #include "ledStrip.cpp"
+#include "fileManage.cpp"
 
 using namespace std;
 //compile script
