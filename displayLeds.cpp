@@ -45,6 +45,7 @@ int main(){
 
                 while(options.getLEDStatus()){
                     fo.updateFrame();
+                    fo.downsampleFrame(fo.getTargetWidth(),fo.getTargetHeight());
                     fo.blurFrame();
                     led.mapLEDs(fo,display);
                     

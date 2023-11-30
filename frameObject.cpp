@@ -12,6 +12,12 @@ class FrameObject {
        void setTargetWidth(int nWidth){
         targetWidth = nWidth;
        }
+       int getTargetWidth(){
+          return targetWidth;
+       }
+       int getTargetHeight(){
+          return targetHeight;
+       }
        void setFrame( cv::Mat nFrame){
         frame = nFrame;
        }
@@ -52,6 +58,6 @@ class FrameObject {
             updateFrame();
             setTargetWidth(inWidth);
             updateTargets();
-            updateInputResToTarget();
+          //   updateInputResToTarget();
        }
 };
