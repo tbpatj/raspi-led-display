@@ -55,10 +55,10 @@ class FrameObject {
                 std::cerr << "Error: couldn't open the webcam." << std::endl;
 	        }
             std::cout << "initalized cap object??" << std::endl;
-            std::this_thread::sleep_for(std::chrono::seconds(0.5));
+            std::this_thread::sleep_for(std::chrono::seconds(1));
             cap.set(cv::CAP_PROP_FPS, 30);
             updateFrame();
-            std::this_thread::sleep_for(std::chrono::seconds(0.5));
+            std::this_thread::sleep_for(std::chrono::seconds(1));
             updateFrame();
             setTargetWidth(inWidth);
             updateTargets();
