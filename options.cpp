@@ -36,6 +36,8 @@ class MyOptions {
             LED_POS[2][1]=inJson["indices"]["top"]["e"];
             LED_POS[3][0]=inJson["indices"]["bottom"]["s"];
             LED_POS[3][1]=inJson["indices"]["bottom"]["e"];
+            RESIZE_WIDTH= std::max(std::abs(LED_POS[0][1] - LED_POS[0][0]),std::max(std::abs(LED_POS[1][1] - LED_POS[1][0]),std::max(std::abs(LED_POS[2][1] - LED_POS[2][0]),std::abs(LED_POS[3][1] - LED_POS[3][0]))));
+            LED_COUNT = std::max(LED_POS[0][0], std::max(LED_POS[0][1], std::max(LED_POS[1][0],std::max(LED_POS[1][1],std::max(LED_POS[2][0],std::max(LED_POS[2][1],std::max(LED_POS[3][0],LED_POS[3][1])))))));
         }
         void setLEDPosByValues(int rightS,int rightE, int leftS, int leftE, int topS, int topE, int bottomS, int bottomE){
             LED_POS[0][0]=rightS;
@@ -46,6 +48,8 @@ class MyOptions {
             LED_POS[2][1]=topE;
             LED_POS[3][0]=bottomS;
             LED_POS[3][1]=bottomE;
+            RESIZE_WIDTH= std::max(std::abs(LED_POS[0][1] - LED_POS[0][0]),std::max(std::abs(LED_POS[1][1] - LED_POS[1][0]),std::max(std::abs(LED_POS[2][1] - LED_POS[2][0]),std::abs(LED_POS[3][1] - LED_POS[3][0]))));
+            LED_COUNT = std::max(LED_POS[0][0], std::max(LED_POS[0][1], std::max(LED_POS[1][0],std::max(LED_POS[1][1],std::max(LED_POS[2][0],std::max(LED_POS[2][1],std::max(LED_POS[3][0],LED_POS[3][1])))))));
         }
         bool getLEDStatus(){
             return LED_STATUS;
@@ -85,8 +89,8 @@ class MyOptions {
                     LED_POS[3][0]=optionsJson["indices"]["bottom"]["s"];
                     LED_POS[3][1]=optionsJson["indices"]["bottom"]["e"];
                     BLUR_SIZE=optionsJson["blurSize"];
-                    RESIZE_WIDTH=optionsJson["resizeWidth"];
                     LED_STATUS=optionsJson["ledStatus"];
+                    RESIZE_WIDTH= std::max(std::abs(LED_POS[0][1] - LED_POS[0][0]),std::max(std::abs(LED_POS[1][1] - LED_POS[1][0]),std::max(std::abs(LED_POS[2][1] - LED_POS[2][0]),std::abs(LED_POS[3][1] - LED_POS[3][0]))));
                     LED_COUNT = std::max(LED_POS[0][0], std::max(LED_POS[0][1], std::max(LED_POS[1][0],std::max(LED_POS[1][1],std::max(LED_POS[2][0],std::max(LED_POS[2][1],std::max(LED_POS[3][0],LED_POS[3][1])))))));
                 }catch(const json::exception& e){
                     std::cerr << "Error parsing JSON: " << e.what() << std::endl;
