@@ -61,9 +61,7 @@ class FrameObject {
             setTargetWidth(inWidth);
             updateTargets();
             updateInputResToTarget(640,480);
-            
-           
-            
-           
+            updateFrame();
+         
        }
 };
