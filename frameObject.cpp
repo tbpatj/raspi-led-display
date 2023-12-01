@@ -65,6 +65,8 @@ class FrameObject {
             std::cout << "resizing width:" << targetWidth << std::endl;
             std::cout << "resizing height:" << targetHeight << std::endl;
             updateInputResToTarget();
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+            updateFrame();
             
            
        }
