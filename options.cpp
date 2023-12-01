@@ -87,7 +87,7 @@ class MyOptions {
                     BLUR_SIZE=optionsJson["blurSize"];
                     RESIZE_WIDTH=optionsJson["resizeWidth"];
                     LED_STATUS=optionsJson["ledStatus"];
-                    LED_COUNT = Math.max(LED_POS[0][0], Math.max(LED_POS[0][1], Math.max(LED_POS[1][0],Math.max(LED_POS[1][1],Math.max(LED_POS[2][0],Math.max(LED_POS[2][1],Math.max(LED_POS[3][0],LED_POS[3][1])))))))
+                    LED_COUNT = std::max(LED_POS[0][0], std::max(LED_POS[0][1], std::max(LED_POS[1][0],std::max(LED_POS[1][1],std::max(LED_POS[2][0],std::max(LED_POS[2][1],std::max(LED_POS[3][0],LED_POS[3][1])))))));
                 }catch(const json::exception& e){
                     std::cerr << "Error parsing JSON: " << e.what() << std::endl;
                 }
