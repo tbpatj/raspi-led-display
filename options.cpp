@@ -22,6 +22,7 @@ class MyOptions {
             optionsJson["blurSize"] = BLUR_SIZE;
             optionsJson["ledCount"] = LED_COUNT;
             optionsJson["resizeWidth"] = RESIZE_WIDTH;
+            optionsJson["ledStatus"] = LED_STATUS;
 
             std::string jsonString = optionsJson.dump();
             fm.write(jsonString);
@@ -84,8 +85,9 @@ class MyOptions {
                     LED_POS[3][0]=optionsJson["indices"]["bottom"]["s"];
                     LED_POS[3][1]=optionsJson["indices"]["bottom"]["e"];
                     BLUR_SIZE=optionsJson["blurSize"];
-                    LED_COUNT=optionsJson["ledCount"];
                     RESIZE_WIDTH=optionsJson["resizeWidth"];
+                    LED_STATUS=optionsJson["ledStatus"];
+                    LED_COUNT = Math.max(LED_POS[0][0], Math.max(LED_POS[0][1], Math.max(LED_POS[1][0],Math.max(LED_POS[1][1],Math.max(LED_POS[2][0],Math.max(LED_POS[2][1],Math.max(LED_POS[3][0],LED_POS[3][1])))))))
                 }catch(const json::exception& e){
                     std::cerr << "Error parsing JSON: " << e.what() << std::endl;
                 }
