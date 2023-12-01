@@ -43,22 +43,27 @@ class FrameObject {
        }
        void updateInputResToTarget(){
           cap.set(cv::CAP_PROP_FRAME_WIDTH, targetWidth);
-         //  cap.set(cv::CAP_PROP_FRAME_HEIGHT, targetHeight);
+          cap.set(cv::CAP_PROP_FRAME_HEIGHT, targetHeight);
        }
        void blurFrame(){
         cv:GaussianBlur(frame,frame,cv::Size(blurSize,blurSize),1);
        }
-       FrameObject(int inWidth) : cap(0){
-            cap.set(cv::CAP_PROP_FPS, 30);
+       FrameObject(int inWidth) : cap(-1){
+            
             //resize the image to the new target width and height
             if(!cap.isOpened()){
                 std::cerr << "Error: couldn't open the webcam." << std::endl;
 	        }
             std::cout << "initalized cap object??" << std::endl;
-            setTargetWidth(inWidth);
-             updateInputResToTarget();
+            std::this_thread::sleep_for(std::chrono::seconds(0.5));
+            cap.set(cv::CAP_PROP_FPS, 30);
             updateFrame();
+            std::this_thread::sleep_for(std::chrono::seconds(0.5));
+            updateFrame();
+            setTargetWidth(inWidth);
             updateTargets();
+            updateInputResToTarget();
+            
            
        }
 };
