@@ -41,7 +41,7 @@ class FrameObject {
             cv::resize(frame,downsampledFrame,downsampledSize);
             frame = downsampledFrame;
        }
-       void updateInputResToTarget(){
+       void updateInputResToTarget(int newResX, int newResY){
           cap.set(cv::CAP_PROP_FRAME_WIDTH, targetWidth);
           cap.set(cv::CAP_PROP_FRAME_HEIGHT, targetHeight);
        }
@@ -57,16 +57,10 @@ class FrameObject {
             std::cout << "initalized cap object??" << std::endl;
             std::this_thread::sleep_for(std::chrono::seconds(1));
             cap.set(cv::CAP_PROP_FPS, 30);
-            updateFrame();
-            std::this_thread::sleep_for(std::chrono::seconds(1));
+            updateInputResToTarget(640,480);
             updateFrame();
             setTargetWidth(inWidth);
             updateTargets();
-            std::cout << "resizing width:" << targetWidth << std::endl;
-            std::cout << "resizing height:" << targetHeight << std::endl;
-            updateInputResToTarget();
-            std::this_thread::sleep_for(std::chrono::seconds(1));
-            updateFrame();
             
            
        }
