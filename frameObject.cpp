@@ -57,10 +57,12 @@ class FrameObject {
             std::cout << "initalized cap object??" << std::endl;
             std::this_thread::sleep_for(std::chrono::seconds(1));
             cap.set(cv::CAP_PROP_FPS, 30);
-            updateInputResToTarget(640,480);
             updateFrame();
             setTargetWidth(inWidth);
             updateTargets();
+            updateInputResToTarget(640,480);
+            
+           
             
            
        }
