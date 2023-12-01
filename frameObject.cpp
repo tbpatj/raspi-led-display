@@ -62,6 +62,8 @@ class FrameObject {
             updateFrame();
             setTargetWidth(inWidth);
             updateTargets();
+            std::cout << "resizing width:" << targetWidth << std::endl;
+            std::cout << "resizing height:" << targetHeight << std::endl;
             updateInputResToTarget();
             
            
