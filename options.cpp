@@ -1,6 +1,7 @@
 class MyOptions {
     private:
         bool LED_STATUS = true;
+        bool POWER_ON = true;
         int BLUR_SIZE = 23;
         int LED_COUNT = 47;
         int RESIZE_WIDTH = 100;
@@ -56,6 +57,12 @@ class MyOptions {
         }
         void setLEDStatus(bool ledStatus){
             LED_STATUS = ledStatus;
+        }
+        bool getPowerOn(){
+            return POWER_ON;
+        }
+        bool setPowerOn(bool powerOff){
+            POWER_ON = powerOff;
         }
         int getBlurSize(){
             return BLUR_SIZE;

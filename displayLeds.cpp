@@ -30,7 +30,7 @@ int main(){
     // You can add more routes for different paths
     std::thread serverThread(runServer);
     options.save();
-    while(true){
+    while(options.getPowerOn()){
         if(options.getLEDStatus()){
             try{
                 FrameObject fo(options.getResizeWidth());
