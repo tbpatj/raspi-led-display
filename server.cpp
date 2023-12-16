@@ -91,6 +91,7 @@ void runServer(){
         res.status = 500;  // Internal Server Error
         res.set_content("Error getting blurSize", "text/plain");
     }
+    });
 
     svr.Post("/powerOff", [](const httplib::Request& req, httplib::Response& res) {
         try {
@@ -106,7 +107,6 @@ void runServer(){
 
 
 
-});
 
     svr.listen("0.0.0.0", 3000);
 
