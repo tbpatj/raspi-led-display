@@ -61,7 +61,7 @@ class MyOptions {
         bool getPowerOn(){
             return POWER_ON;
         }
-        bool setPowerOn(bool powerOff){
+        void setPowerOn(bool powerOff){
             POWER_ON = powerOff;
         }
         int getBlurSize(){
