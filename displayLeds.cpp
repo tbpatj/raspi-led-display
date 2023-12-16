@@ -34,7 +34,7 @@ int main(){
         if(options.getLEDStatus()){
             try{
                 FrameObject fo(options.getResizeWidth());
-                fo.downsampleFrame(fo.getTargetWidth(),fo.getTargetHeight());
+                // fo.downsampleFrame(fo.getTargetWidth(),fo.getTargetHeight());
                 DisplayProperties display(fo.getFrame(),options.getLEDCount());
                 display.printValues();
                 display.initLEDPos(options.LED_POS[0],options.LED_POS[1],options.LED_POS[2],options.LED_POS[3]);
@@ -46,7 +46,7 @@ int main(){
 
                 while(options.getLEDStatus()){
                     fo.updateFrame();
-                    fo.downsampleFrame(fo.getTargetWidth(),fo.getTargetHeight());
+                    // fo.downsampleFrame(fo.getTargetWidth(),fo.getTargetHeight());
                     fo.blurFrame();
                     led.mapLEDs(fo,display);
                     
